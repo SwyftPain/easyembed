@@ -7,13 +7,13 @@ const { EasyEmbed } = require('sp-easyembed');
 
 Then you can use it like this:
 ```js
-const embed = new EasyEmbed()();
+const embed = new EasyEmbed();
 embed.setTitle('Title');
 ```
 
 What is worth noting and the changes compared to the discord.js version of EmbedBuilder is that you can add author and footer as strings, instead of objects:
 ```js
-const embed = new EasyEmbed()();
+const embed = new EasyEmbed();
 embed.setAuthor("Author name", "Author Icon URL", "Author URL");
 ```
 
