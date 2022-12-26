@@ -1,11 +1,15 @@
 {
   "name": "sp-easyembed",
-  "version": "1.0.9",
+  "version": "1.1.0",
   "description": "Easier way to generate embeds",
   "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SwyftPain/easyembed.git"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "SwyftPain",
   "license": "ISC"
 }
