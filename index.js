@@ -2,7 +2,7 @@
  * A class for creating and modifying Discord embeds easily.
  *
  * @example
- * const embed = new EasyEmbed()();
+ * const embed = new EasyEmbed();
  * @returns {EasyEmbed}
  */
 class EasyEmbed {
@@ -163,7 +163,7 @@ class EasyEmbed {
    * @returns {void}
    *
    * @example
-   * let embed = new EasyEmbed()();
+   * let embed = new EasyEmbed();
    * embed.setTitle("Hello, World!"); // sets the title to "Hello, World!"
    */
   setTitle(title) {
@@ -181,7 +181,7 @@ class EasyEmbed {
    * @returns {void}
    *
    * @example
-   * let embed = new EasyEmbed()();
+   * let embed = new EasyEmbed();
    * embed.setDescription("This is a description."); // sets the description to "This is a description."
    */
   setDescription(description) {
@@ -240,7 +240,7 @@ class EasyEmbed {
    * @returns {void}
    *
    * @example
-   * let embed = new EasyEmbed()();
+   * let embed = new EasyEmbed();
    * embed.addField("Field Name", "Field Value", true); // adds a field with name "Field Name" and value "Field Value" that is displayed inline
    * embed.addField("Field Name 2", "Field Value 2", false); // adds a field with name "Field Name 2" and value "Field Value 2" that is not displayed inline
    */
@@ -266,7 +266,7 @@ class EasyEmbed {
    * @returns {void}
    *
    * @example
-   * let embed = new EasyEmbed()();
+   * let embed = new EasyEmbed();
    *
    * // Using an array of objects
    * embed.addFields({name: "Field Name", value: "Field Value", inline: true}, {name: "Field Name 2", value: "Field Value 2", inline: true});
@@ -344,7 +344,7 @@ class EasyEmbed {
    * @returns {void}
    *
    * @example
-   * let embed = new EasyEmbed()();
+   * let embed = new EasyEmbed();
    * embed.addBlankField(); // adds a blank field to the embed
    * embed.addBlankField(false); // adds a blank field that is not displayed inline
    */
@@ -361,7 +361,7 @@ class EasyEmbed {
    * @returns {void}
    *
    * @example
-   * let embed = new EasyEmbed()();
+   * let embed = new EasyEmbed();
    * embed.setFooter("This is the footer");
    * embed.setFooter("This is the footer", "https://example.com/footer-icon.png");
    */
@@ -383,7 +383,7 @@ class EasyEmbed {
    * @returns {void}
    *
    * @example
-   * let embed = new EasyEmbed()();
+   * let embed = new EasyEmbed();
    * embed.setThumbnail("https://example.com/thumbnail.png");
    */
   setThumbnail(url) {
@@ -401,7 +401,7 @@ class EasyEmbed {
    * @returns {void}
    *
    * @example
-   * let embed = new EasyEmbed()();
+   * let embed = new EasyEmbed();
    * embed.setImage("https://example.com/image.png");
    */
   setImage(url) {
@@ -419,7 +419,7 @@ class EasyEmbed {
    * @returns {void}
    *
    * @example
-   * let embed = new EasyEmbed()();
+   * let embed = new EasyEmbed();
    * embed.setTimestamp(); // includes the current timestamp in the embed
    * embed.setTimestamp(false); // does not include the timestamp in the embed
    */
