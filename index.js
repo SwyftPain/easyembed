@@ -197,27 +197,36 @@ class EasyEmbed {
    * @param {number|string} color - The color to set, represented as a decimal number, hex code or a color word.
    * @returns {void}
    * @example
-   * let embed = new EasyEmbed()();
+   * let embed = new EasyEmbed();
    * embed.setColor(0xff0000); // sets the color to red (decimal value)
    * embed.setColor("#ff0000"); // sets the color to red (hex code)
    * embed.setColor("Red"); // sets the color to red (color word)
    */
   setColor(color) {
-    if (typeof color === "string") {
-      // Check if the color is a hex value or a color word
-      if (color[0] === "#") {
-        // Convert hex value to number
-        color = parseInt(color.slice(1), 16);
-      } else {
-        // Convert color word to value
-        color = this.colors[color.toLowerCase()];
-      }
-    }
-    if (typeof color === "number") {
+    color = color.toLowerCase();
+    if (color === "random") {
+      // Generate a random number between 0 and the number of colors
+      const randomIndex = Math.floor(
+        Math.random() * Object.keys(this.colors).length
+      );
+
+      // Get the name of the color at the random index
+      const randomColorName = Object.keys(this.colors)[randomIndex];
+
+      // Set the color of the embed to the random color
+      this.embed.color = this.colors[randomColorName];
+    } else if (this.colors[color]) {
+      // Set the color of the embed to the provided color
+      this.embed.color = this.colors[color];
+    } else if (color[0] === "#") {
+      // Convert hex value to number
+      color = parseInt(color.slice(1), 16);
+      this.embed.color = color;
+    } else if (typeof color === "number") {
       this.embed.color = color;
     } else {
-      console.error(
-        "Invalid color: must be a number or a valid color word or hex value"
+      throw new Error(
+        "Invalid color: must be a number, a valid color word, or a hex value"
       );
     }
   }
