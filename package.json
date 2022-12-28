@@ -1,6 +1,6 @@
 {
   "name": "sp-easyembed",
-  "version": "1.1.3",
+  "version": "1.1.4",
   "description": "Easier way to generate embeds",
   "main": "index.js",
   "repository": {
