@@ -1,13 +1,29 @@
-const { colorList } = require("./colors");
+import { colorList } from "./colors";
 
 /**
  * A class for creating and modifying Discord embeds easily.
  *
  * @example
  * const embed = new EasyEmbed();
- * @returns {EasyEmbed}
+ * @returns {JSON}
  */
 class EasyEmbed {
+  embed: {
+      title: string;
+      color: string | number | string[];
+      fields: any;
+      author: {
+          icon_url: string;
+          url: string; name: string; 
+};
+      footer: {
+          icon_url: string; text: string; 
+};
+      thumbnail: { url: string; };
+      image: { url: string; };
+      timestamp: Date; type: string; description: string; 
+};
+  colors?: any;
   constructor() {
     this.embed = { type: "rich", description: "" };
 
@@ -25,7 +41,7 @@ class EasyEmbed {
    * let embed = new EasyEmbed();
    * embed.setTitle("Hello, World!"); // sets the title to "Hello, World!"
    */
-  setTitle(title) {
+  setTitle(title: any): void {
     if (typeof title === "string") {
       this.embed.title = title;
     } else {
@@ -43,7 +59,7 @@ class EasyEmbed {
    * let embed = new EasyEmbed();
    * embed.setDescription("This is a description."); // sets the description to "This is a description."
    */
-  setDescription(description) {
+  setDescription(description: string): void {
     if (typeof description === "string") {
       this.embed.description = description;
     } else {
@@ -61,8 +77,7 @@ class EasyEmbed {
    * embed.setColor("#ff0000"); // sets the color to red (hex code)
    * embed.setColor("Red"); // sets the color to red (color word)
    */
-  setColor(color) {
-    color = color.toLowerCase();
+  setColor(color: string | number | string[] | undefined): void {
     if (color === "random") {
       // Generate a random number between 0 and the number of colors
       const randomIndex = Math.floor(
@@ -79,8 +94,10 @@ class EasyEmbed {
       this.embed.color = this.colors[color];
     } else if (color[0] === "#") {
       // Convert hex value to number
+      if(typeof color === "string") {
       color = parseInt(color.slice(1), 16);
       this.embed.color = color;
+      }
     } else if (typeof color === "number") {
       this.embed.color = color;
     } else {
@@ -103,7 +120,7 @@ class EasyEmbed {
    * embed.addField("Field Name", "Field Value", true); // adds a field with name "Field Name" and value "Field Value" that is displayed inline
    * embed.addField("Field Name 2", "Field Value 2", false); // adds a field with name "Field Name 2" and value "Field Value 2" that is not displayed inline
    */
-  addField(name, value, inline) {
+  addField(name: any, value: any, inline: string | boolean): void {
     if (typeof name === "string" && typeof value === "string") {
       if (!this.embed.fields) this.embed.fields = [];
 
@@ -121,7 +138,7 @@ class EasyEmbed {
   /**
    * Adds fields to the embed.
    *
-   * @param {...(string[])|...{name: string, value: string, inline?: boolean}} fields - The fields to add. Each field must have a name and a value, both of which must be strings. The inline parameter is optional and defaults to false. Can also be passed as an array of arrays, with each inner array containing the field name, field value, and inline value in that order.
+   * @param {{name: string, value: string, inline?: boolean}} fields - The fields to add. Each field must have a name and a value, both of which must be strings. The inline parameter is optional and defaults to false. Can also be passed as an array of arrays, with each inner array containing the field name, field value, and inline value in that order.
    * @returns {void}
    *
    * @example
@@ -140,7 +157,7 @@ class EasyEmbed {
    * ];
    * embed.addFields(fields);
    */
-  addFields(...fields) {
+  addFields(...fields: any[]): void {
     if (Array.isArray(fields)) {
       if (!this.embed.fields) this.embed.fields = [];
       fields.forEach((field) => {
@@ -182,7 +199,7 @@ class EasyEmbed {
    * embed.setAuthor("Jane Doe", "https://example.com");  // sets name and url, iconURL is set to default value
    * embed.setAuthor("Bob Smith");  // sets name only, iconURL and url are set to default values
    */
-  setAuthor(name, iconURL = "", url) {
+  setAuthor(name: any, iconURL: string = "", url: any): void {
     if (typeof name === "string") {
       this.embed.author = { name };
       if (typeof iconURL === "string") {
@@ -207,7 +224,7 @@ class EasyEmbed {
    * embed.addBlankField(); // adds a blank field to the embed
    * embed.addBlankField(false); // adds a blank field that is not displayed inline
    */
-  addBlankField(inline = true) {
+  addBlankField(inline: boolean = true): void {
     if (!this.embed.fields) this.embed.fields = [];
     this.embed.fields.push({ name: "\u200B", value: "\u200B", inline });
   }
@@ -224,7 +241,7 @@ class EasyEmbed {
    * embed.setFooter("This is the footer");
    * embed.setFooter("This is the footer", "https://example.com/footer-icon.png");
    */
-  setFooter(text, iconURL) {
+  setFooter(text: any, iconURL: any): void {
     if (typeof text === "string") {
       this.embed.footer = { text };
       if (typeof iconURL === "string") {
@@ -245,7 +262,7 @@ class EasyEmbed {
    * let embed = new EasyEmbed();
    * embed.setThumbnail("https://example.com/thumbnail.png");
    */
-  setThumbnail(url) {
+  setThumbnail(url: any): void {
     if (typeof url === "string") {
       this.embed.thumbnail = { url };
     } else {
@@ -263,7 +280,7 @@ class EasyEmbed {
    * let embed = new EasyEmbed();
    * embed.setImage("https://example.com/image.png");
    */
-  setImage(url) {
+  setImage(url: any): void {
     if (typeof url === "string") {
       this.embed.image = { url };
     } else {
@@ -272,28 +289,22 @@ class EasyEmbed {
   }
 
   /**
-   * Sets the timestamp of the embed.
-   *
-   * @param {boolean} [timestamp=true] - Whether to include the current timestamp or not.
-   * @returns {void}
-   *
-   * @example
-   * let embed = new EasyEmbed();
-   * embed.setTimestamp(); // includes the current timestamp in the embed
-   * embed.setTimestamp(false); // does not include the timestamp in the embed
-   */
-  setTimestamp(currentTime) {
+     * Sets the timestamp of the embed.
+     * @param {boolean} [currentTime] - Whether to include the current timestamp or not.
+     * @returns {void}
+     * @example let embed = new EasyEmbed();
+    embed.setTimestamp(); // includes the current timestamp in the embed
+    embed.setTimestamp(false); // does not include the timestamp in the embed
+     */
+  setTimestamp(currentTime: boolean): void {
     if (currentTime) {
       this.embed.timestamp = new Date();
     }
   }
 
-  // new method
   toJSON() {
     return this.embed;
   }
 }
 
-module.exports = {
-  EasyEmbed: EasyEmbed,
-};
+export default EasyEmbed;

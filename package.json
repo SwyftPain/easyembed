@@ -1,6 +1,6 @@
 {
   "name": "sp-easyembed",
-  "version": "1.1.5",
+  "version": "1.2.4",
   "description": "Easier way to generate embeds",
   "main": "index.js",
   "repository": {
@@ -11,5 +11,8 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "SwyftPain",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^18.11.18"
+  }
 }
